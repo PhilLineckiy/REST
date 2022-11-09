@@ -26,15 +26,16 @@ public class PersonStore {
         personMap.put(person.getId(), person);
     }
 
-    public void getAll() {
+    public Map<Integer, Person> getAll() {
         Set<Integer> ids = personMap.keySet();
-        Person[] p = new Person[ids.size()];
+        Person[] p = new Person[ids.size() + 1];
         int i=0;
         for(Integer id : ids){
             p[i] = personMap.get(id);
             i++;
             System.out.println(p[i]);
         }
+        return personMap;
     }
 
 
