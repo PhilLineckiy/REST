@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,6 +22,12 @@ public class GetAllServlet extends HttpServlet {
         Set<Integer> ids = allPersons.keySet();
         for(Integer id : ids) {
             out.println(id + " " + allPersons.get(id).getName() + " " + allPersons.get(id).getAge());
+            String json = "{\n";
+            json += "\"name\": " + JSONObject.quote(allPersons.get(id).getName()) + ",\n";
+            json += "\"age\": " + JSONObject.quote(String.valueOf(allPersons.get(id).getAge())) + ",\n";
+            json += "\"id\": " + allPersons.get(id).getId() + "\n";
+            json += "}";
+            out.println(json);
         }
     }
 }
