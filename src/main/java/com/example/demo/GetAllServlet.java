@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.*;
 import java.util.Map;
 import java.util.Set;
 
@@ -29,5 +30,7 @@ public class GetAllServlet extends HttpServlet {
             json += "}";
             out.println(json);
         }
+
+        System.out.print("random string");
     }
 }
