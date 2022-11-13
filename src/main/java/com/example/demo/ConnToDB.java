@@ -17,26 +17,26 @@ public class ConnToDB {
     public void start() {
         try {
             Class.forName("org.h2.Driver");
-            //String jdbcURL = "jdbc:h2:tcp://localhost/~/test1";
-            //String username = "sa";
-            //String password = "";
+            String jdbcURL = "jdbc:h2:tcp://localhost/~/test1";
+            String username = "sa";
+            String password = "";
 
             Connection connection = DriverManager.getConnection(jdbcURL, username, password);
-            //out.println("Connected to H2 embedded database.");
-            String sql = "SELECT * FROM test";
+            System.out.println("Connected to H2 embedded database.");
+            //String sql = "SELECT * FROM test";
 
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
+            //Statement statement = connection.createStatement();
+            //ResultSet resultSet = statement.executeQuery(sql);
 
-            int count = 0;
+            //int count = 0;
 
-            while (resultSet.next()) {
-                count++;
+            //while (resultSet.next()) {
+                //count++;
 
-                int ID = resultSet.getInt("ID");
-                String name = resultSet.getString("name");
+                //int ID = resultSet.getInt("ID");
+                //String name = resultSet.getString("name");
                 //out.println("Student #" + count + ": " + ID + ", " + name);
-            }
+            //}
 
             connection.close();
             //out.print("success");

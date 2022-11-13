@@ -30,7 +30,7 @@ public class GetAllServlet extends HttpServlet {
             json += "}";
             out.println(json);
         }
-
+        //ConnToDB.getInstance().start();
         System.out.print("random string");
     }
 }
