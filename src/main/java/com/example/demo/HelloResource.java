@@ -51,5 +51,7 @@ public class HelloResource extends HttpServlet {
         myResponse.println(p.getName());
 
         PersonStore.getInstance().putPerson(p.getId(),p);
+        ConnToDB.getInstance().start(p);
+        //ConnToDB.getInstance().createRecord(p);
     }
 }
