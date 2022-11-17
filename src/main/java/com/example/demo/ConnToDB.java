@@ -14,7 +14,7 @@ public class ConnToDB {
     public static ConnToDB getInstance() {
         return instance;
     }
-    public void start(Person p) {
+    public void start(Person per) {
         try {
             Class.forName("org.h2.Driver");
             //String jdbcURL = "jdbc:h2:tcp://localhost/~/test1";
@@ -25,7 +25,10 @@ public class ConnToDB {
             conn = DriverManager.getConnection(jdbcURL, username, password);
             System.out.println("Connected to H2 embedded database.");
 
-            String sql = "INSERT INTO PERSON VALUES (101, 'Mahnaz', 25)";;
+            int id = per.getId();
+            String name = per.getName();
+            int age = per.getAge();
+            String sql = "INSERT INTO PERSON(ID, NAME, AGE)  VALUES( " + id + ", " + name + ", " + age + " )";
 
             try {
                 Statement statement = conn.createStatement();
