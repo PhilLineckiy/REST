@@ -14,7 +14,7 @@ public class ConnToDB {
     public static ConnToDB getInstance() {
         return instance;
     }
-    public void start(Person per) {
+    public Connection start() {
         try {
             Class.forName("org.h2.Driver");
             //String jdbcURL = "jdbc:h2:tcp://localhost/~/test1";
@@ -25,17 +25,7 @@ public class ConnToDB {
             conn = DriverManager.getConnection(jdbcURL, username, password);
             System.out.println("Connected to H2 embedded database.");
 
-            int id = per.getId();
-            String name = per.getName();
-            int age = per.getAge();
-            String sql = "INSERT INTO PERSON(ID, NAME, AGE)  VALUES( " + id + ", " + name + ", " + age + " )";
 
-            try {
-                Statement statement = conn.createStatement();
-                int resultSet = statement.executeUpdate(sql);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
             //String sql = "SELECT * FROM test";
 
             //Statement statement = connection.createStatement();
@@ -53,21 +43,24 @@ public class ConnToDB {
 
             //conn.close();
             //out.print("success");
+            return conn;
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
     }
 
-    public void createRecord(Person p) {
-        String sql = "INSERT INTO PERSON VALUES " + p.getId() + " " + p.getName() + " " + p.getAge();
+    public void createRecord(Person per) {
+        int id = per.getId();
+        String name = per.getName();
+        int age = per.getAge();
+        String sql = "INSERT INTO PERSON(ID, NAME, AGE)  VALUES( " + id + ", " + name + ", " + age + " )";
 
         try {
             Statement statement = conn.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
+            int resultSet = statement.executeUpdate(sql);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        //ResultSet resultSet = statement.executeQuery(sql);
     }
 }
